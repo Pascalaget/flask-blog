@@ -12,6 +12,16 @@ Flask blog to present Movies in a neat way.
 - Movie details like: plot, studio, duration, year
 
 Description
-The blog is build with Flask as basis and a SQLite database in the background. For local machines it possible to run a server which provides the artwork as well the paths to the movies. The search capability is a full text search. 
+The blog is build with Flask and a SQLite database in the background. For local machines it possible to run an extra server which provides the artwork as well the paths to the movies. The search capability is a full text search.Pagination is also in the blog included
 
+Index Page:
 ![Index](https://github.com/Pascalaget/flask-blog/blob/master/RM_img/Blog_index.jpg)
+
+Post Page:
+![Index](https://github.com/Pascalaget/flask-blog/blob/master/RM_img/Blog_detail.jpg)
+
+Search:
+![Index](https://github.com/Pascalaget/flask-blog/blob/master/RM_img/Blog_search.jpg)
+
+Pagination:
+![Index](https://github.com/Pascalaget/flask-blog/blob/master/RM_img/Blog_pagination.jpg)
