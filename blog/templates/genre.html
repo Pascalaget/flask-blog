@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>Movies - {{ clicked.genre }}</title>
+{% endblock title %}
+
+
+{% block bigtitle %}
+<div class="lead-title">{{ clicked.genre }}
+<div class="sub-title">Found: {{ total }}</div>
+</div>
+{% endblock bigtitle %}
+
+
+{% block pagination %}
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
+    {% if page_num %}
+        {% if posts.page == page_num %}
+          <a href="{{ url_for('genre', page=page_num,genre_id=genre_id) }}">
+              <button type="button" class="pgbutton">{{ page_num }}</button>
+          </a>
+        {% else %}
+          <a href="{{ url_for('genre', page=page_num,genre_id=genre_id) }}">
+              <button type="button" class="pgbutton">{{ page_num }}</button>
+          </a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+{% endblock pagination %}

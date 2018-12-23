@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>Movies</title>
+{% endblock title %}
+
+
+
+{% block bigtitle %}
+<div class="lead-title">Movie Blog<br/></div>
+{% endblock bigtitle %}
+
+
+
+{% block pagination %}
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=3, right_current=4) %}
+      {% if page_num %}
+        {% if posts.page == page_num %}
+          <a href="{{ url_for('az', page=page_num) }}"><button type="button" class="pgbutton">{{ page_num }}</button></a>
+        {% else %}
+          <a href="{{ url_for('az', page=page_num) }}"><button type="button" class="pgbutton">{{ page_num }}</button></a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+{% endblock pagination %}

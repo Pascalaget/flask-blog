@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <link href="{{ url_for('static', filename='post_style.css') }}" rel="stylesheet">
+       <title>{{ post.title }}</title>
+   </head>
+   <body>
+      <header class="header-banner" style="background-image: url('{{ post.thumbpath }} ')">
+         <div class="container-width">
+            <div class="logo-container">
+                <a href="{{ url_for('index') }}">
+               <div class="logo">Home</div></a>
+            </div>
+             <nav class="menu">
+               <div class="menu-item">
+                  <div class="search-container">
+                   <form class="search" method="POST" action="{{ url_for('searchblog') }}" novalidate>
+                    <input type="text" placeholder="Search.." name="searchitem" class = "searchinput">
+                   </form>
+                   </div>
+               </div>
+            </nav>
+            <div class="clearfix"></div>
+            <div class="lead-title"><br/></div>
+            <div id="i99npd">
+               <div class="sub-title">
+               </div>
+            </div>
+         </div>
+      </header>
+      <section class="flex-sect" id="i4roz">
+         <div class="container-width"></div>
+         <div class="row">
+		   <div class="cell">
+              {% set count = namespace(a=0) %}
+              {% for p in posts if count.a < 2 %}
+               {% for a in post.actors %}
+                  {% if  p.actors[0].actor_id == a.actor_id and post.movie_id != p.movie_id %}
+              	  <div class= "imgcontainer">
+                     <a href="{{ url_for('post', post_id=p.movie_id) }}">
+					    <img class="suggestedImg" src="{{ p.imagepath }}"/>
+                     <!--    <img id="suggestedImg" src="{{ url_for('static', filename='poster.jpg') }}"/>-->
+					    <div class="text-img">{{ p.title }}</div>
+                     </a>
+                  </div>
+                  {% set count.a = count.a + 1 %}
+                  {% endif %}
+               {% endfor %}
+              {% endfor %}
+              {% if  count.a < 3 %}
+               {% for p in posts if count.a < 2 %}
+                  {% if  p.studio == post.studio and post.movie_id != p.movie_id %}
+              	  <div class= "imgcontainer">
+                     <a href="{{ url_for('post', post_id=p.movie_id) }}">
+					    <img class="suggestedImg" src="{{ p.imagepath }}"/>
+                     <!--    <img id="suggestedImg" src="{{ url_for('static', filename='poster.jpg') }}"/>-->
+					    <div class="text-img">{{ p.title }}</div>
+                     </a>
+                  </div>
+                  {% set count.a = count.a + 1 %}
+                  {% endif %}
+              {% endfor %}
+               {% endif %}
+               {% if  count.a < 3 %}
+               {% for p in posts if count.a < 2 %}
+                  {% if  post.movie_id != p.movie_id %}
+              	  <div class= "imgcontainer">
+                     <a href="{{ url_for('post', post_id=p.movie_id) }}">
+					    <img class="suggestedImg" src="{{ p.imagepath }}"/>
+                     <!--    <img id="suggestedImg" src="{{ url_for('static', filename='poster.jpg') }}"/>-->
+					    <div class="text-img">{{ p.title }}</div>
+                     </a>
+                  </div>
+                  {% set count.a = count.a + 1 %}
+                  {% endif %}
+              {% endfor %}
+               {% endif %}
+		   </div>
+            <div class="cell" id="i3bq15">
+                <a href="{{ post.videopath }}">
+                    <div id="ipsxph" >
+                        <div class="posttitle" > {{ post.title }}</div>
+                        <div >{{ post.studio }}</div>
+
+                    </div>
+                </a>
+                    <p class="movietext">{{ post.plot }}</p>
+                    <div class="movietext" id="imfgi2">
+                {% for actors in post.actors %}
+                    {% if loop.index <= 20 %}
+                      {% for role in actors.role if role.movie_id == post.movie_id %}
+                  <a  href="{{ url_for('actor', actor_id=actors.actor_id) }}">{{ actors.actor }}({{ role.role }}){{ "," if not loop.last }}</a>
+                        {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+               <div class = "descrtext" id="izhuui">
+                   {% if post.genres|length > 0 %}
+                  {% for genre in post.genres %}
+                  <a href="{{ url_for('genre', genre_id=genre.genre_id) }}">{{ genre.genre }}{{ "," if not loop.last }}</a>
+                  {% endfor %}
+                   {% else %}
+                   <small>None</small>
+                   {% endif %}
+               </div>
+                   <div class="textinfo"><b>Duration:</b> {{ post.duration }} min</div>
+                   <div class="textinfo"><b>Video:</b> {{ post.width }}x{{ post.height }}</div>
+                   <div class="textinfo"><b>Year:</b> {{ post.year }}</div>
+            </div>
+			<div class="cell" id="ieujl7">
+                <a href="{{ post.imagepath }}">
+                    <img id="iy62iq" src="{{ post.imagepath }}"/>
+                </a>
+            </div>
+         </div>
+         <div class="row">
+            {% set count = namespace(a=0) %}
+            {% if post.genres|length > 0 %}
+              {% for p in postwg if count.a < 5%}
+              {% for g in post.genres %}
+                  {% if p.genres[0].genre_id == g.genre_id and post.movie_id != p.movie_id %}
+            <div class="cell" id="i3bq16">
+                <div class= "imgcontainer">
+                     <a href="{{ url_for('post', post_id=p.movie_id) }}">
+					    <img class="suggestedImg" src="{{ p.imagepath }}"/>
+					    <div class="text-img">{{ p.title }}</div>
+                     </a>
+                </div>
+            </div>
+              {% set count.a = count.a + 1 %}
+              {% endif %}
+            {% endfor %}
+            {% endfor %}
+            {% endif %}
+         </div>
+      </section>
+      <footer class="footer-under">
+         <div class="container-width"></div>
+      </footer>
+   </body>
+</html>
