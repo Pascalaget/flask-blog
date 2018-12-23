@@ -13,3 +13,5 @@ Flask blog to present Movies in a neat way.
 
 Description
 The blog is build with Flask as basis and a SQLite database in the background. For local machines it possible to run a server which provides the artwork as well the paths to the movies. The search capability is a full text search. 
+
+![Index](https://github.com/Pascalaget/flask-blog/blob/master/RM_img/Blog_index.jpg)
