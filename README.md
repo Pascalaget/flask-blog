@@ -5,7 +5,8 @@ Flask blog to present Movies in a neat way.
 - Cover, banner
 - Arists
 - Genre
-- Search option
+- Search
+- Pagination
 - Order by alphabetically or just random
 - Recommends movies with similar genre or actors
 - Movie details like: plot, studio, duration, year
