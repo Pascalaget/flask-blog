@@ -2,8 +2,10 @@
 Python Flask Movie-Blog
 
 - master: SQLite and local version
-- appengine: python 2.7 Google App Engine Version of the flask blog
+- appengine: python 2.7 Google App Engine Standard version of the flask blog
   - Database is Google Cloud SQL with the same schema
+- appengie_flex: Python 3.6 Google App Engine Flex Environment version of the flask blog
+  - SQLite Database like in the local version
 
 Flask blog to present Movies in a neat way.
 - Cover, banner
