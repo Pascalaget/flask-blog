@@ -1,0 +1,16 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /static
+  static_dir: blog/static
+- url: /.*
+  script: main.app
+
+libraries:
+  - name: ssl
+    version: latest
+
+env_variables:
+  CLOUDSQL_CONNECTION: 'mysql+pymysql://#USERNAME:#PASSWORD@/flask?unix_socket=/cloudsql/#CLOUDSQLCONNECTION:#DATABASE'
