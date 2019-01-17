@@ -3,6 +3,7 @@ Python Flask Movie-Blog
 
 - master: SQLite and local version
 - appengine: python 2.7 Google App Engine Version of the flask blog
+  - Database is Google Cloud SQL with the same schema
 
 Flask blog to present Movies in a neat way.
 - Cover, banner
